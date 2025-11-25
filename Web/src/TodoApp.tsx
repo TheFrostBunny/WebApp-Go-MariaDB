@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { config } from "dotenv";
 
 interface Todo {
   id: number;
   task: string;
 }
+config({ path: '../.env' }); 
 
 // axios instantie
+
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: `${process.env.Server_IP}:${process.env.React_server_Port}`,
 });
 
 export default function TodoApp() {

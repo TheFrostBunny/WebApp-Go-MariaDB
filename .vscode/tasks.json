@@ -15,19 +15,9 @@
       "problemMatcher": []
     },
     {
-      "label": "Build Go Server",
-      "type": "shell",
-      "command": "go build -o server ./main.go",
-      "options": {
-        "cwd": "server"
-      },
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
       "label": "Run Go Server",
       "type": "shell",
-      "command": "./server",
+      "command": "go run main.go",
       "options": {
         "cwd": "server"
       },
