@@ -16,7 +16,7 @@ Dette prosjektet består av en fullstack-mal med:
  ├── /Web            # React (Vite) frontend
  ├── /server         # Go backend (REST API)
  ├── README.md
- └── .env            # Miljøvariabler (server og Web App)
+ └── .env            # Miljøvariabler
 ```
 
 ---
