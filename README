@@ -87,9 +87,9 @@ Backend kjører på: `http://localhost:3000`
 ### Frontend (React)
 
 ```
-cd client
-npm install
-npm run dev -- --port=5000
+cd web
+pnpm install
+pnpm run dev
 ```
 
 Frontend kjører på: `http://localhost:5000`
@@ -130,19 +130,10 @@ go build -o server
 ### Frontend
 
 ```
-cd client
-npm run build
+cd web
+pnpm run build
 ```
 
----
-
-## 🚀 Produksjon
-
-- Docker & Docker Compose anbefales
-- Nginx reverse proxy
-- Separate tjenester for frontend og backend
-
----
 
 ## ❓ Feilsøking
 
