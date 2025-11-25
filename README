@@ -1,33 +1,31 @@
-<h1>📦 Prosjektmal – React + Go REST API + MySQL (med Todo-tabell)</h1>
+# 📦 Prosjektmal – React + Go REST API + MySQL (med Todo-tabell)
 
-<p>Dette prosjektet består av en fullstack-mal med:</p>
+Dette prosjektet består av en fullstack-mal med:
 
-<ul>
-  <li><strong>Frontend:</strong> React (Vite)</li>
-  <li><strong>Backend:</strong> Go REST API</li>
-  <li><strong>Database:</strong> MySQL</li>
-  <li><strong>Todo-tabell inkludert</strong></li>
-</ul>
+- **Frontend:** React (Vite)
+- **Backend:** Go REST API
+- **Database:** MySQL
+- **Todo-tabell inkludert**
 
-<hr>
+---
 
-<h2>📁 Mappestruktur</h2>
+## 📁 Mappestruktur
 
-<pre>
+```
 /project-root
- ├── /Web        # React (Vite) frontend
- ├── /server        # Go backend (REST API)
+ ├── /Web            # React (Vite) frontend
+ ├── /server         # Go backend (REST API)
  ├── README.md
- └── .env           # Miljøvariabler (server og Web App)
-</pre>
+ └── .env            # Miljøvariabler (server og Web App)
+```
 
-<hr>
+---
 
-<h2>⚙️ Miljøvariabler</h2>
+## ⚙️ Miljøvariabler
 
-<h3>Backend (.env i /server eller prosjektrot)</h3>
+### Backend (.env i /server eller prosjektrot)
 
-<pre>
+```
 # Database / Server configuration
 DB_USER=            # Ditt database brukernavn
 DB_PASSWORD=        # Ditt database passord
@@ -41,137 +39,117 @@ Server_PORT=3000    # Ditt server portnummer (standard: 3000)
 VITE_Server_IP=http://localhost  # Server host (standard: localhost)
 VITE_Server_PORT=3000            # Server port (standard: 3000)
 VITE_Web_PORT=5000               # Web port (standard: 5000)
-</pre>
+```
 
-<h2>🗄️ Databaseoppsett</h2>
+---
 
-<p>Lag databasen:</p>
+## 🗄️ Databaseoppsett
 
-<pre>
-CREATE DATABASE &lt;db_navn&gt;;
-USE &lt;db_navn&gt;;
-</pre>
+Lag databasen:
 
-<h3>📌 Opprett Todo-tabellen</h3>
+```
+CREATE DATABASE <db_navn>;
+USE <db_navn>;
+```
 
-<pre>
+### 📌 Opprett Todo-tabellen
+
+```
 CREATE TABLE todos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task VARCHAR(255) NOT NULL,
     completed TINYINT(1) NOT NULL DEFAULT 0
 );
+```
 
-</pre>
+Tabellen lagrer:
 
-<p>Tabellen lagrer:</p>
+- **id:** Primærnøkkel  
+- **title:** Tittel på todo  
+- **description:** Valgfri beskrivelse  
+- **completed:** Om todo er ferdig  
+- **created_at:** Dato opprettet  
 
-<ul>
-  <li><strong>id:</strong> Primærnøkkel</li>
-  <li><strong>title:</strong> Tittel på todo</li>
-  <li><strong>description:</strong> Valgfri beskrivelse</li>
-  <li><strong>completed:</strong> Om todo er ferdig</li>
-  <li><strong>created_at:</strong> Dato opprettet</li>
-</ul>
+---
 
-<hr>
+## ▶️ Starte prosjektet
 
-<h2>▶️ Starte prosjektet</h2>
+### Backend (Go)
 
-<h3>Backend (Go)</h3>
-
-<pre>
+```
 cd server
 go mod tidy
 go run main.go
-</pre>
+```
 
-<p>Backend kjører på: <code>http://localhost:3000</code></p>
+Backend kjører på: `http://localhost:3000`
 
-<h3>Frontend (React)</h3>
+### Frontend (React)
 
-<pre>
+```
 cd client
 npm install
 npm run dev -- --port=5000
-</pre>
+```
 
-<p>Frontend kjører på: <code>http://localhost:5000</code></p>
+Frontend kjører på: `http://localhost:5000`
 
-<hr>
+---
 
-<h2>🔌 API-struktur (Todo-eksempel)</h2>
+## 🔌 API-struktur (Todo-eksempel)
 
-<pre>
+```
 GET    /api/todos
 GET    /api/todos/:id
 POST   /api/todos
 PUT    /api/todos/:id
 DELETE /api/todos/:id
-</pre>
+```
 
-<p><strong>Eksempel på POST-body:</strong></p>
+**Eksempel på POST-body:**
 
-<pre>
+```
 {
   "title": "Kjøpe melk",
   "description": "Husk laktosefri",
   "completed": false
 }
-</pre>
+```
 
-<hr>
+---
 
-<h2>🛠️ Bygging</h2>
+## 🛠️ Bygging
 
-<h3>Backend</h3>
-<pre>
+### Backend
+
+```
 cd server
 go build -o server
-</pre>
+```
 
-<h3>Frontend</h3>
-<pre>
+### Frontend
+
+```
 cd client
 npm run build
-</pre>
+```
 
-<hr>
+---
 
-<h2>🚀 Produksjon</h2>
+## 🚀 Produksjon
 
-<ul>
-  <li>Docker &amp; Docker Compose anbefales</li>
-  <li>Nginx reverse proxy</li>
-  <li>Separate tjenester for frontend og backend</li>
-</ul>
+- Docker & Docker Compose anbefales
+- Nginx reverse proxy
+- Separate tjenester for frontend og backend
 
-<hr>
+---
 
-<h2>❓ Feilsøking</h2>
+## ❓ Feilsøking
 
-<table>
-  <tr>
-    <th>Problem</th>
-    <th>Løsning</th>
-  </tr>
-  <tr>
-    <td>Ingen DB-tilkobling</td>
-    <td>Sjekk brukernavn og passord i <code>.env</code></td>
-  </tr>
-  <tr>
-    <td>Backend svarer ikke</td>
-    <td>Sjekk Server_PORT og at Go kjører</td>
-  </tr>
-  <tr>
-    <td>Frontend får CORS-feil</td>
-    <td>Sjekk CORS-konfigurasjon i Go API</td>
-  </tr>
-  <tr>
-    <td>Port allerede i bruk</td>
-    <td>Bytt port i <code>.env</code></td>
-  </tr>
-</table>
+| Problem | Løsning |
+|--------|---------|
+| Ingen DB-tilkobling | Sjekk brukernavn og passord i `.env` |
+| Backend svarer ikke | Sjekk Server_PORT og at Go kjører |
+| Frontend får CORS-feil | Sjekk CORS-konfigurasjon i Go API |
+| Port allerede i bruk | Bytt port i `.env` |
 
-<hr>
-
-<
