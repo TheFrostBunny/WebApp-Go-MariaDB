@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { config } from "dotenv";
+
 
 interface Todo {
   id: number;
   task: string;
 }
-config({ path: '../.env' }); 
-
 // axios instantie
 
 const api = axios.create({
-  baseURL: `${process.env.Server_IP}:${process.env.React_server_Port}`,
+  baseURL: `${import.meta.env.VITE_Server_IP}:${import.meta.env.VITE_Server_PORT}`,
 });
 
 export default function TodoApp() {
@@ -35,7 +33,7 @@ export default function TodoApp() {
 
     try {
       const res = await api.post<Todo>("/todos", { task });
-      setTodos((prev) => [...prev, res.data]);
+      setTodos((prev) => [...(prev ?? []), res.data]);
       setTask("");
     } catch (err) {
       console.error("Error adding todo:", err);
@@ -45,7 +43,7 @@ export default function TodoApp() {
   const removeTodo = async (id: number) => {
     try {
       await api.delete(`/todos/${id}`);
-      setTodos((prev) => prev.filter((todo) => todo.id !== id));
+      setTodos((prev) => (prev ?? []).filter((todo) => todo.id !== id));
     } catch (err) {
       console.error("Error removing todo:", err);
     }
@@ -80,7 +78,7 @@ export default function TodoApp() {
       </div>
 
       <ul className="mt-6 space-y-2">
-        {todos.map((todo) => (
+        {Array.isArray(todos) && todos.map((todo) => (
           <li
             key={todo.id}
             className="flex items-center justify-between bg-gray-100 px-3 py-2 rounded"

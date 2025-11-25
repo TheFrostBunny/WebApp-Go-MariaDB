@@ -2,6 +2,38 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Check pnpm Installed",
+      "type": "shell",
+      "command": "pnpm --version",
+      "options": {
+        "cwd": "Web"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "default"
+      }
+    },
+    {
+      "label": "Check Go Installed",
+      "type": "shell",
+      "command": "go version",
+      "options": {
+        "cwd": "server"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "default"
+      }
+    },
+    {
       "label": "Run React App",
       "type": "shell",
       "command": "pnpm run dev",
@@ -12,6 +44,7 @@
         "kind": "build",
         "isDefault": true
       },
+      "dependsOn": "Install pnpm",
       "problemMatcher": []
     },
     {
@@ -25,6 +58,7 @@
         "kind": "test",
         "isDefault": true
       },
+      "dependsOn": "Check Go Installed",
       "problemMatcher": []
     }
   ]

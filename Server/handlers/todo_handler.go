@@ -21,7 +21,10 @@ func GetTodos(c *gin.Context) {
 	var todos []models.Todo
 	for rows.Next() {
 		var t models.Todo
-		rows.Scan(&t.ID, &t.Task, &t.Completed)
+		if err := rows.Scan(&t.ID, &t.Task, &t.Completed); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
 		todos = append(todos, t)
 	}
 

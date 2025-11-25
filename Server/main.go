@@ -72,9 +72,9 @@ func main() {
 		)
 	}))
 
-	r.Use(gin.Recovery())                      // Recovery middleware
-	r.Use(cors.Default())                      // CORS
-	r.SetTrustedProxies([]string{"127.0.0.1"}) // Fjerner proxy warning
+	r.Use(gin.Recovery())
+	r.Use(cors.Default())
+	r.SetTrustedProxies([]string{"127.0.0.1"})
 
 	// Register routes
 	routes.RegisterRoutes(r)
