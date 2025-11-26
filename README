@@ -1,146 +1,126 @@
-# 📦 Prosjektmal – React + Go REST API + MySQL (med Todo-tabell)
+# 📦 Project Template -- React + Go REST API + MySQL (with Todo Table)
 
-Dette prosjektet består av en fullstack-mal med:
+This project is a full-stack template consisting of:
 
-- **Frontend:** React (Vite)
-- **Backend:** Go REST API
-- **Database:** MySQL
-- **Todo-tabell inkludert**
+-   **Frontend:** React (Vite)
+-   **Backend:** Go REST API
+-   **Database:** MySQL
+-   **Includes a Todo table**
 
----
+------------------------------------------------------------------------
 
-## 📁 Mappestruktur
+## 📁 Folder Structure
 
-```
-/project-root
- ├── /Web            # React (Vite) frontend
- ├── /server         # Go backend (REST API)
- ├── README.md
- └── .env            # Miljøvariabler
-```
+    /project-root
+     ├── /Web            # React (Vite) frontend
+     ├── /server         # Go backend (REST API)
+     ├── README.md
+     └── .env            # Environment variables
 
----
+------------------------------------------------------------------------
 
-## ⚙️ Miljøvariabler
+## ⚙️ Environment Variables
 
-### Backend (.env i /server eller prosjektrot)
+### Backend (.env in /server or project root)
 
-```
-# Database / Server configuration
-DB_USER=            # Ditt database brukernavn
-DB_PASSWORD=        # Ditt database passord
-DB_HOST=localhost   # Ditt database vert (standard: localhost)
-DB_PORT=3306        # Ditt database portnummer
-DB_NAME=            # Ditt database navn
+    # Database / Server configuration
+    DB_USER=            # Your database username
+    DB_PASSWORD=        # Your database password
+    DB_HOST=localhost   # Database host (default: localhost)
+    DB_PORT=3306        # Database port
+    DB_NAME=            # Your database name
 
-Server_PORT=3000    # Ditt server portnummer (standard: 3000)
+    Server_PORT=3000    # Server port (default: 3000)
 
-# Website configuration
-VITE_Server_IP=http://localhost  # Server host (standard: localhost)
-VITE_Server_PORT=3000            # Server port (standard: 3000)
-VITE_Web_PORT=5000               # Web port (standard: 5000)
-```
+    # Website configuration
+    VITE_Server_IP=http://localhost  # Server host
+    VITE_Server_PORT=3000            # Server port
+    VITE_Web_PORT=5000               # Web port
 
----
+------------------------------------------------------------------------
 
-## 🗄️ Databaseoppsett
+## 🗄️ Database Setup
 
-Lag databasen:
+Create the database:
 
-```
-CREATE DATABASE <db_navn>;
-USE <db_navn>;
-```
+    CREATE DATABASE <db_name>;
+    USE <db_name>;
 
-### 📌 Opprett Todo-tabellen
+### 📌 Create Todo Table
 
-```
-CREATE TABLE todos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    task VARCHAR(255) NOT NULL,
-    completed TINYINT(1) NOT NULL DEFAULT 0
-);
-```
+    CREATE TABLE todos (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        task VARCHAR(255) NOT NULL,
+        completed TINYINT(1) NOT NULL DEFAULT 0
+    );
 
-Tabellen lagrer:
+The table stores:
 
-- **id:** Primærnøkkel  
-- **title:** Tittel på todo  
-- **description:** Valgfri beskrivelse  
-- **completed:** Om todo er ferdig  
-- **created_at:** Dato opprettet  
+-   **id:** Primary key\
+-   **title:** Todo title\
+-   **description:** Optional description\
+-   **completed:** Whether the todo is finished\
+-   **created_at:** Creation date
 
----
+------------------------------------------------------------------------
 
-## ▶️ Starte prosjektet
+## ▶️ Running the Project
 
 ### Backend (Go)
 
-```
-cd server
-go mod tidy
-go run main.go
-```
+    cd server
+    go mod tidy
+    go run main.go
 
-Backend kjører på: `http://localhost:3000`
+Backend runs at: `http://localhost:3000`
 
 ### Frontend (React)
 
-```
-cd web
-pnpm install
-pnpm run dev
-```
+    cd web
+    pnpm install
+    pnpm run dev
 
-Frontend kjører på: `http://localhost:5000`
+Frontend runs at: `http://localhost:5000`
 
----
+------------------------------------------------------------------------
 
-## 🔌 API-struktur (Todo-eksempel)
+## 🔌 API Structure (Todo Example)
 
-```
-GET    /api/todos
-GET    /api/todos/:id
-POST   /api/todos
-PUT    /api/todos/:id
-DELETE /api/todos/:id
-```
+    GET    /api/todos
+    GET    /api/todos/:id
+    POST   /api/todos
+    PUT    /api/todos/:id
+    DELETE /api/todos/:id
 
-**Eksempel på POST-body:**
+**POST Body Example:**
 
-```
-{
-  "title": "Kjøpe melk",
-  "description": "Husk laktosefri",
-  "completed": false
-}
-```
+    {
+      "title": "Buy milk",
+      "description": "Remember lactose-free",
+      "completed": false
+    }
 
----
+------------------------------------------------------------------------
 
-## 🛠️ Bygging
+## 🛠️ Building
 
 ### Backend
 
-```
-cd server
-go build -o server
-```
+    cd server
+    go build -o server
 
 ### Frontend
 
-```
-cd web
-pnpm run build
-```
+    cd web
+    pnpm run build
 
+------------------------------------------------------------------------
 
-## ❓ Feilsøking
+## ❓ Troubleshooting
 
-| Problem | Løsning |
-|--------|---------|
-| Ingen DB-tilkobling | Sjekk brukernavn og passord i `.env` |
-| Backend svarer ikke | Sjekk Server_PORT og at Go kjører |
-| Frontend får CORS-feil | Sjekk CORS-konfigurasjon i Go API |
-| Port allerede i bruk | Bytt port i `.env` |
-
+  Problem                  Solution
+  ------------------------ --------------------------------------------
+  No DB connection         Check username and password in `.env`
+  Backend not responding   Check Server_PORT and ensure Go is running
+  Frontend CORS errors     Check CORS configuration in Go API
+  Port already in use      Change port in `.env`
