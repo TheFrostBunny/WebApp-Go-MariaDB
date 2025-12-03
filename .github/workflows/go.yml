@@ -1,0 +1,35 @@
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.23'
+
+      - name: Build Server (use existing go.mod)
+        working-directory: ./Server
+        run: |
+          if [ ! -f go.mod ]; then
+            echo "No go.mod found in Server — aborting."
+            exit 1
+          fi
+          # Ensure go.mod has a compatible 'go' directive; fail early if not.
+          grep -E '^go [0-9]+\.[0-9]+' go.mod || (echo "Invalid or missing go directive in go.mod" && exit 1)
+          go mod download
+          go build -v ./...
+
+      - name: Test Server
+        working-directory: ./Server
+        run: go test -v ./...
