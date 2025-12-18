@@ -58,7 +58,7 @@ CREATE DATABASE your_db_name;
 USE your_db_name;
 ```
 
-### 📌 Todo Table (Corrected)
+### 📌 Todo Table
 
 ```sql
 CREATE TABLE todos (
@@ -172,24 +172,6 @@ pnpm run build
 
 ## ❓ Troubleshooting
 
-| Problem                | Solution                          |
-| ---------------------- | --------------------------------- |
-| No DB connection       | Verify DB credentials in `.env`   |
-| Backend not responding | Check `SERVER_PORT` and Go logs   |
-| CORS errors            | Ensure CORS middleware is enabled |
-| Port already in use    | Change the port in `.env`         |
-
----
-
-## ✅ Fixed Issues Summary
-
-* ✅ Database schema now matches API payload
-* ✅ Removed invalid backend `VITE_` variables
-* ✅ Consistent folder naming (`web`)
-* ✅ Correct REST route syntax for Go
-* ✅ Added `created_at`
-* ✅ Clarified Vite default port
-
----
-
-Happy hacking 🚀
+| Problem          | Solution      |
+| ---------------- | ------------- |
+| No DB connection | Verify DB cre |
